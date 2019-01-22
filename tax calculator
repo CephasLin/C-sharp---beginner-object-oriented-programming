@@ -1,0 +1,48 @@
+using System;
+
+namespace selectionLogic11
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            /*A country charges income tax as follows based on one’s gross salary. 
+             No tax is charged on the first 20% of salary. 
+             The remaining 80% is called taxable income. Tax is paid as follows:
+                •   10% on the first $15,000 of taxable income;
+                •   20% on the next $20,000 of taxable income;
+                •   25% on all taxable income in excess of $35,000;*/
+
+            double sal, taxInc, tax, taxAvg;
+
+            Console.Write("input salary: $");
+            sal = Convert.ToDouble(Console.ReadLine());
+            taxInc = sal * 0.8;
+
+            if (taxInc > 15000)
+            {
+                if (taxInc <= 35000)
+                {
+                    //middle bracket
+                    tax = 1500 + (taxInc - 15000) * 0.2;
+                }
+                else
+                {
+                    //top bracket
+                    tax = 1500 + 4000 + (taxInc - 35000) * 0.25;
+                }
+            }
+            else
+            {
+                //bottom bracket
+                tax = taxInc * 0.1;
+            }
+
+            taxAvg = tax / sal * 100;
+
+            Console.WriteLine("total tax owed is {0:c}. average tax rate is {1}%", tax, taxAvg);
+            Console.ReadKey();
+
+        }
+    }
+}
