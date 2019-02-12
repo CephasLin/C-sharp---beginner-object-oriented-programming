@@ -1,1 +1,49 @@
+/*
+    Write a program to request two times given in 24-hour clock format and find the time (in hours and minutes) 
+    that has elapsed between the first time and the second time. You may assume that the second time is later than 
+    the first time. Each time is represented by two numbers: e.g. 16 45 means the time 16:45, that is 4:45 p.m. 
+    For example, if the two given times are 16 45 and 23 25 your answer should be 6 hours 40 minutes.
 
+    Modify the program so that it works as follows: if the second time is sooner than the first time, 
+    take it to mean a time for the next day. For example, given the times 20:30 and 6:15, take this to 
+    mean 8.30 p.m. to 6.15 a.m. of the next day. Your answer should be 9 hours 45 minutes.
+*/
+
+public static void Main (string[] args)
+{
+    int hrs1, hrs2, min1, min2, chgmin, chghrs, chgcombo, t1, t2;
+
+      Console.Write("enter hrs1: ");
+      hrs1 = Convert.ToInt32(Console.ReadLine());
+      Console.Write("enter mins1: ");
+      min1 = Convert.ToInt32(Console.ReadLine());
+      Console.Write("enter hrs2: ");
+      hrs2 = Convert.ToInt32(Console.ReadLine());
+      Console.Write("enter mins2: ");
+      min2 = Convert.ToInt32(Console.ReadLine());
+
+      //times converted to minutes
+      t1 = hrs1 * 60 + min1;
+      t2 = hrs2 * 60 + min2;
+      chgcombo = t2 - t1;
+
+      //check if next day
+      if (chgcombo < 0)
+      {
+          chgcombo = (1440 - t1) + t2;
+      }
+
+      //convert back to hours and minutes format
+      chghrs = chgcombo / 60 - chgcombo % 60 / 60;
+      chgmin = chgcombo % 60;
+
+      //check if mins need to roll into hrs
+      if (chgmin >= 60)
+      {
+          chghrs += chgmin / 60 - chgmin % 60;
+          chgmin %= 60;
+      }
+
+      Console.WriteLine("time elapsed is {0}:{1}", chghrs, chgmin);
+      Console.ReadKey();
+}
