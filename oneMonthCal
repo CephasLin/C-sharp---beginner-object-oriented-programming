@@ -10,7 +10,7 @@ namespace labtest2practice
             //the number of days in the month and the day of the week the month
             //begins. 
 
-            int mth, start;
+            int mth, start, count=0;
             string output="sun\t mon\t tue\t wed\t thu\t fri\t sat\n";
 
             Console.Write("Enter number of days in month: ");
@@ -27,7 +27,7 @@ namespace labtest2practice
                 {
 
                     //ending condition
-                    if ((i + j) > mth)
+                    if (count >= mth)
                     {
                         break;
                     }
@@ -41,7 +41,8 @@ namespace labtest2practice
                     //outputs date sequence
                     else if ((i + j) >= start)
                     {
-                        output += (i + j) + "\t";
+                        ++count;
+                        output += count + "\t";
                     }
                 }
 
