@@ -1,0 +1,56 @@
+using System;
+
+namespace labtest2practice
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            //Write a program that prints a one month calendar. The user specifies
+            //the number of days in the month and the day of the week the month
+            //begins. 
+
+            int mth, start;
+            string output="sun\t mon\t tue\t wed\t thu\t fri\t sat\n";
+
+            Console.Write("Enter number of days in month: ");
+            mth = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter starting day of week: ");
+            start = Convert.ToInt32(Console.ReadLine());
+
+            //outside loop makes lines of the calendar
+            for (int i = 1; i <= mth; i=i+7)
+            {
+                //inside loop makes days
+                for (int j = 0; j <7; j++)
+                {
+
+                    //ending condition
+                    if ((i + j) > mth)
+                    {
+                        break;
+                    }
+
+                    //adds an empty tab until the disired starting point
+                    if ((i + j) < start)
+                    {
+                        output += "\t";
+                    }
+
+                    //outputs date sequence
+                    else if ((i + j) >= start)
+                    {
+                        output += (i + j) + "\t";
+                    }
+                }
+
+                output += "\n";
+
+            }
+
+            Console.WriteLine(output);
+
+        }
+    }
+}
